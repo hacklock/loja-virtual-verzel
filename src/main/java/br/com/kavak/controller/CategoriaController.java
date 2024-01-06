@@ -14,41 +14,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.kavak.entity.Marca;
-import br.com.kavak.service.MarcaService;
-import jakarta.websocket.server.PathParam;
+import br.com.kavak.entity.Categoria;
+import br.com.kavak.service.CategoriaService;
 
 @RestController
-@RequestMapping("/api/marca")
+@RequestMapping
 @CrossOrigin
-public class MarcaController {
+public class CategoriaController {
 	
 	@Autowired
-	private MarcaService marcaService;
+	private CategoriaService categoriaService;
+	
 	
 	@GetMapping("/")
-	public List<Marca> buscarTodas(){
-		return marcaService.buscarTodas();
-		
-	}
+    public List<Categoria> buscarTodos(){
+       return categoriaService.buscarTodos();
+    }
 
-	@PostMapping("/")
-	public Marca inserir(@RequestBody Marca objeto) {
-		return marcaService.inserir(objeto);
+    @PostMapping("/")
+    public Categoria inserir(@RequestBody Categoria objeto){
+        return categoriaService.inserir(objeto);
+    }
 
-	}
+    @PutMapping("/")
+    public Categoria alterar(@RequestBody Categoria objeto){
+        return categoriaService.alterar(objeto);
+    }
 
-	@PutMapping("/")
-	public Marca alterar(@RequestBody Marca objeto) {
-		return marcaService.alterar(objeto);
-
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable("id")Long id) {
-		marcaService.excluir(id);
-		return ResponseEntity.ok().build();
-
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
+        categoriaService.excluir(id);
+        return ResponseEntity.ok().build();
+    }
 
 }

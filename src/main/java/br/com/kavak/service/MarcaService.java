@@ -1,6 +1,5 @@
 package br.com.kavak.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,13 @@ public class MarcaService {
     }
 
     public Marca inserir(Marca marca) {
-        marca.setDataCriacao(new Date());  // Use a data atual ao inserir
+        marca.setDataCriacao(java.time.LocalDateTime.now());  // Use a data atual ao inserir
         Marca marcaNova = marcaRepository.saveAndFlush(marca);
         return marcaNova;
     }
 
     public Marca alterar(Marca marca) {
-        marca.setDataAtualizacao(new Date());  // Use a data atual ao alterar
+        marca.setDataAtualizacao(java.time.LocalDateTime.now());  // Use a data atual ao alterar
         return marcaRepository.saveAndFlush(marca);
     }
 
